@@ -47,6 +47,10 @@ const paths = {
   fonts: {
     src: 'fonts/**/*',
     dest: 'dist/fonts'
+  },
+  headers: {
+    src: '_headers',
+    dest: 'dist'
   }
 };
 
@@ -96,6 +100,12 @@ function scripts() {
 function fonts() {
   return gulp.src(paths.fonts.src)
     .pipe(gulp.dest(paths.fonts.dest));
+}
+
+// Задача для копирования _headers файла
+function headers() {
+  return gulp.src(paths.headers.src)
+    .pipe(gulp.dest(paths.headers.dest));
 }
 
 // Задача для локального сервера + watch
@@ -154,7 +164,7 @@ async function clean() {
  */
 const build = gulp.series(
   clean,
-  gulp.parallel(styles, templates, scripts, images, fonts)
+  gulp.parallel(styles, templates, scripts, images, fonts, headers)
 );
 
 /**
@@ -163,7 +173,7 @@ const build = gulp.series(
  */
 const dev = gulp.series(
   clean,
-  gulp.parallel(styles, templates, scripts, images, fonts),
+  gulp.parallel(styles, templates, scripts, images, fonts, headers),
   serve
 );
 
@@ -174,6 +184,7 @@ export {
   scripts, 
   images, 
   fonts, 
+  headers,
   serve, 
   clean, 
   build, 
