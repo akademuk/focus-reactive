@@ -24,12 +24,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/focus-reactive.git"
+    "url": "https://github.com/akademuk/focus-reactive.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/focus-reactive/issues"
+    "url": "https://github.com/akademuk/focus-reactive/issues"
   },
-  "homepage": "https://yourusername.github.io/focus-reactive",
+  "homepage": "https://akademuk.github.io/focus-reactive",
   "dependencies": {
     "nunjucks": "^3.2.4"
   },

@@ -1,6 +1,6 @@
 # Focus Reactive - Live Demo
 
-🚀 **Live Site**: [https://yourusername.github.io/focus-reactive](https://yourusername.github.io/focus-reactive)
+🚀 **Live Site**: [https://akademuk.github.io/focus-reactive](https://akademuk.github.io/focus-reactive)
 
 This website is automatically deployed to GitHub Pages when changes are pushed to the main branch.
 
