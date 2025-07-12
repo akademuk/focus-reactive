@@ -1,0 +1,55 @@
+{
+  "name": "focus-reactive",
+  "version": "1.0.0",
+  "description": "Modern responsive website for Focus Reactive - showcasing composable content systems and web development services",
+  "main": "my-project/gulpfile.js",
+  "scripts": {
+    "dev": "cd my-project && gulp dev",
+    "start": "npm run dev",
+    "build": "cd my-project && gulp build",
+    "serve": "cd my-project && gulp serve",
+    "clean": "cd my-project && gulp clean"
+  },
+  "keywords": [
+    "website",
+    "responsive",
+    "nunjucks",
+    "sass",
+    "gulp",
+    "focus-reactive",
+    "web-development",
+    "modern-web"
+  ],
+  "author": "Focus Reactive Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/focus-reactive.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/focus-reactive/issues"
+  },
+  "homepage": "https://yourusername.github.io/focus-reactive",
+  "dependencies": {
+    "nunjucks": "^3.2.4"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "browser-sync": "^3.0.4",
+    "cwebp-bin": "^8.0.0",
+    "del": "^6.1.1",
+    "glob": "^11.0.3",
+    "gulp": "^5.0.1",
+    "gulp-autoprefixer": "^9.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-nunjucks-render": "^2.2.3",
+    "gulp-postcss": "^10.0.0",
+    "gulp-sass": "^6.0.1",
+    "gulp-uglify": "^3.0.2",
+    "gulp-webp": "^4.0.1",
+    "sass": "^1.89.2",
+    "uuid": "^11.1.0"
+  },
+  "type": "module"
+}

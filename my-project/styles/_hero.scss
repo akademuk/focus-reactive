@@ -1,0 +1,160 @@
+@use 'global' as *;
+
+.hero {
+    position: relative;
+    min-height: 640px;
+    padding: 100px 24px 24px 24px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+
+    @include respond-to($breakpoint-xl) {
+        min-height: 809px;
+        padding: 120px 40px 49px 40px;
+    }
+
+    &__image {
+        position: absolute;
+        margin: 0;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+
+    .wrapper {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+
+        @include respond-to($breakpoint-xl) {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+
+    &__title {
+        width: 100%;
+        color: $FR-White;
+        font-size: 40px;
+        font-weight: 600;
+        line-height: 94%;
+        letter-spacing: -1.8px;
+        margin: 0 0 17px 0;
+
+        @include respond-to($breakpoint-xl) {
+            max-width: 745px;
+            width: 100%;
+            font-size: 88px;
+            letter-spacing: -3.76px;
+            margin: 0 0 146px 115px;
+        }
+
+        &-mark {
+            display: block;
+            background: transparent;
+            color: $FR-Digital-Green;
+        }
+    }
+
+    &__description {
+        width: 100%;
+        font-size: 14px;
+        line-height: 120%; 
+        order: 1;
+        margin: 0 0 139px 0;
+        letter-spacing: -0.2px;
+
+        @include respond-to($breakpoint-xl) {
+            max-width: 395px;
+            margin: 0 149px -4px auto;
+            letter-spacing: 0.1px;
+            font-size: 16px;
+            order: 2;
+        }
+    }
+
+    &__nav {
+        display: flex;
+        align-items: flex-end;
+    }
+
+    &__content {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+
+        @include respond-to($breakpoint-xl) {
+            justify-content: flex-end;
+            align-items: flex-end;
+        }
+    }
+
+    &__clutch {
+        order: 2;
+        width: 91px;
+        height: 48px;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        @include respond-to($breakpoint-xl) {
+            order: 1;
+        }
+    }
+
+    &__nav {
+        order: 3;
+        margin-left: auto;
+
+        @include respond-to($breakpoint-xl) {
+            margin-left: 0;
+        }
+
+        &-list {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+            @include respond-to($breakpoint-xl) {
+                gap: 8px;
+            }
+        }
+
+        &-item {
+            display: flex;
+            width: 40px;
+            height: 40px;
+            justify-content: center;
+            align-items: center;
+            aspect-ratio: 1/1;
+            border-radius: 200px;
+            border: 1px solid $FR-Grey;
+        }
+
+        &-link {
+            text-decoration: none;
+            color: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 100%;
+            text-transform: uppercase;
+        }
+    }
+}

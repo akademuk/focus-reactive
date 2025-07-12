@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ pageTitle | default("Focus Reactive") }}</title>
+    <meta name="description" content="{{ pageDescription | default('Focus Reactive - Modern Web Solutions') }}">
+    <meta name="keywords" content="{{ pageKeywords | default('web development, modern web, focus reactive, portfolio, services') }}">
+    <meta name="author" content="Focus Reactive">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="{{ pageTitle | default('Focus Reactive') }}">
+    <meta property="og:description" content="{{ pageDescription | default('Focus Reactive - Modern Web Solutions') }}">
+    <meta property="og:image" content="{{ ogImage | default('/images/og-image.jpg') }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ pageUrl | default('https://focusreactive.com') }}">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ pageTitle | default('Focus Reactive') }}">
+    <meta name="twitter:description" content="{{ pageDescription | default('Focus Reactive - Modern Web Solutions') }}">
+    <meta name="twitter:image" content="{{ ogImage | default('/images/og-image.jpg') }}">
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+
+    {% include 'header.njk' %}
+
+    <main id="main-content" role="main" tabindex="-1">
+        
+        {% include 'hero.njk' %}
+
+        {% include 'integrate.njk' %}
+
+        {% include 'ship.njk' %}
+
+        {% include 'work.njk' %}
+
+    </main>
+
+    {% include 'footer.njk' %}
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="overlay" tabindex="-1" aria-hidden="true"></div>
+
+    <!-- Mobile Navigation Menu -->
+    <aside class="mobile-menu" 
+           id="mobile-menu"
+           aria-label="Mobile Navigation" 
+           hidden>
+        <nav class="mobile-menu__nav" aria-label="Mobile Primary Navigation">
+            <ul class="mobile-menu__list" role="list">
+                <li class="mobile-menu__item" role="listitem">
+                    <a href="/" class="mobile-menu-link" tabindex="0">Home</a>
+                </li>
+                <li class="mobile-menu__item" role="listitem">
+                    <a href="/services" class="mobile-menu-link" tabindex="0">Services</a>
+                </li>
+                <li class="mobile-menu__item" role="listitem">
+                    <a href="/portfolio" class="mobile-menu-link" tabindex="0">Portfolio</a>
+                </li>
+                <li class="mobile-menu__item" role="listitem">
+                    <a href="/about" class="mobile-menu-link" tabindex="0">About</a>
+                </li>
+                <li class="mobile-menu__item" role="listitem">
+                    <a href="/blog" class="mobile-menu-link" tabindex="0">Blog</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="mobile-menu__contact">
+            <a href="/contact" class="mobile-menu--contact" role="button" tabindex="0">Contact Us</a>
+        </div>
+    </aside>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>
