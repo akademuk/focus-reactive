@@ -7,10 +7,21 @@
     <meta name="description" content="{{ pageDescription | default('Focus Reactive - Modern Web Solutions') }}">
     <meta name="keywords" content="{{ pageKeywords | default('web development, modern web, focus reactive, portfolio, services') }}">
     <meta name="author" content="Focus Reactive">
-    <!-- Google Fonts -->
+    <!-- DNS prefetch для быстрой загрузки -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <!-- Preconnect для Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Critical CSS inline -->
+    <style>
+/* Critical CSS - Above the fold styles */
+body{font-family:Inter,sans-serif;margin:0;padding:0;background:#000;color:#fff;line-height:1.4}.header{position:absolute;top:0;left:0;width:100%;z-index:1000;padding:20px 24px}.header__container{display:flex;align-items:center;justify-content:space-between}.hero{position:relative;min-height:640px;padding:100px 24px 24px;overflow:hidden;display:flex;align-items:flex-end}.hero__image{position:absolute;top:0;left:0;width:100%;height:100%;margin:0}.hero__image img{width:100%;height:100%;object-fit:cover}.hero__title{font-size:40px;font-weight:600;line-height:.94;margin:0;position:relative;z-index:1}@media (min-width:1280px){.header{padding:36px 40px}.hero{min-height:809px;padding:120px 40px 49px}.hero__title{font-size:88px}}
+    </style>
+    <link rel="preload" href="./css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="./css/main.css"></noscript>
+    <!-- Google Fonts с display=swap для лучшей производительности -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="{{ pageTitle | default('Focus Reactive') }}">
     <meta property="og:description" content="{{ pageDescription | default('Focus Reactive - Modern Web Solutions') }}">
@@ -25,7 +36,9 @@
     <!-- Favicon -->
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="./apple-touch-icon.png">
-    <link rel="stylesheet" href="./css/main.css">
+    <!-- Preload критических ресурсов -->
+    <link rel="preload" href="./images/hero-banner.webp" as="image" type="image/webp">
+    <link rel="preload" href="./images/Logo.svg" as="image" type="image/svg+xml">
 </head>
 <body>
 
@@ -77,6 +90,6 @@
         </div>
     </aside>
 
-    <script src="./js/main.js"></script>
+    <script src="./js/main.js" defer></script>
 </body>
 </html>

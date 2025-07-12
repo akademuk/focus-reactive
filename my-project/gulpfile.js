@@ -23,6 +23,10 @@ import uglify from 'gulp-uglify';
 import del from 'del';
 import webp from 'gulp-webp';
 import imagemin from 'gulp-imagemin';
+import imageminMozjpeg from 'imagemin-mozjpeg';
+import imageminPngquant from 'imagemin-pngquant';
+import imageminSvgo from 'imagemin-svgo';
+import htmlmin from 'gulp-htmlmin';
 
 // File paths configuration
 const paths = {
@@ -54,14 +58,24 @@ const paths = {
   }
 };
 
-// Задача для обработки изображений, включая WebP
+// Задача для обработки изображений с оптимизацией
 function imagesOriginals() {
   return gulp.src(['images/**/*.{png,jpg,jpeg,gif,svg}'], { encoding: false })
+    .pipe(imagemin([
+      imageminMozjpeg({ quality: 85, progressive: true }),
+      imageminPngquant({ quality: [0.6, 0.8] }),
+      imageminSvgo()
+    ]))
     .pipe(gulp.dest(paths.images.dest));
 }
+
+// Создание WebP версий с лучшим качеством
 function imagesWebp() {
   return gulp.src(['images/**/*.{png,jpg,jpeg}'], { encoding: false })
-    .pipe(webp({ quality: 80 }))
+    .pipe(webp({ 
+      quality: 90,
+      method: 6 // Максимальное сжатие
+    }))
     .pipe(gulp.dest(paths.images.dest));
 }
 const images = gulp.series(imagesOriginals, imagesWebp);
@@ -79,11 +93,22 @@ function styles() {
     .pipe(browserSync.stream());
 }
 
-// Задача для рендеринга Nunjucks → HTML
+// Задача для рендеринга Nunjucks → HTML с минификацией
 function templates() {
   return gulp.src(paths.templates.src)
     .pipe(nunjucksRender({
       path: ['components']  // Директория с вашими .njk-компонентами
+    }))
+    .pipe(htmlmin({
+      collapseWhitespace: true,
+      removeComments: true,
+      minifyCSS: true,
+      minifyJS: true,
+      removeAttributeQuotes: true,
+      removeRedundantAttributes: true,
+      removeScriptTypeAttributes: true,
+      removeStyleLinkTypeAttributes: true,
+      useShortDoctype: true
     }))
     .pipe(gulp.dest(paths.templates.dest));
 }
