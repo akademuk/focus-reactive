@@ -69,12 +69,12 @@ function imagesOriginals() {
     .pipe(gulp.dest(paths.images.dest));
 }
 
-// Создание WebP версий с лучшим качеством
 function imagesWebp() {
   return gulp.src(['images/**/*.{png,jpg,jpeg}'], { encoding: false })
     .pipe(webp({ 
-      quality: 90,
-      method: 6 // Максимальное сжатие
+      quality: 80,
+      method: 6,
+      effort: 6
     }))
     .pipe(gulp.dest(paths.images.dest));
 }
@@ -88,7 +88,7 @@ function styles() {
       outputStyle: 'expanded'
     }).on('error', sass.logError))
     .pipe(postcss([autoprefixer()]))
-    .pipe(cleanCSS()) // Минификация CSS
+    .pipe(cleanCSS())
     .pipe(gulp.dest(paths.styles.dest))
     .pipe(browserSync.stream());
 }
@@ -97,7 +97,7 @@ function styles() {
 function templates() {
   return gulp.src(paths.templates.src)
     .pipe(nunjucksRender({
-      path: ['components']  // Директория с вашими .njk-компонентами
+      path: ['components']
     }))
     .pipe(htmlmin({
       collapseWhitespace: true,
@@ -113,21 +113,18 @@ function templates() {
     .pipe(gulp.dest(paths.templates.dest));
 }
 
-// Задача для копирования JS
 function scripts() {
   return gulp.src(paths.scripts.src)
-    .pipe(uglify()) // Минификация JS
+    .pipe(uglify())
     .pipe(gulp.dest(paths.scripts.dest))
     .pipe(browserSync.stream());
 }
 
-// Задача для копирования шрифтов
 function fonts() {
   return gulp.src(paths.fonts.src)
     .pipe(gulp.dest(paths.fonts.dest));
 }
 
-// Задача для копирования _headers файла
 function headers() {
   return gulp.src(paths.headers.src)
     .pipe(gulp.dest(paths.headers.dest));
@@ -140,7 +137,6 @@ function serve() {
       baseDir: 'dist',
       middleware: [
         function(req, res, next) {
-          // Установка правильных MIME-типов для изображений
           if (req.url.endsWith('.png')) {
             res.setHeader('Content-Type', 'image/png');
           } else if (req.url.endsWith('.jpg') || req.url.endsWith('.jpeg')) {
