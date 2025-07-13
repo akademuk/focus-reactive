@@ -22,6 +22,9 @@ body{font-family:Inter,sans-serif;margin:0;padding:0;background:#000;color:#fff;
     <noscript><link rel="stylesheet" href="./css/main.css"></noscript>
     <!-- Google Fonts с display=swap для лучшей производительности -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <!-- GSAP Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="{{ pageTitle | default('Focus Reactive') }}">
     <meta property="og:description" content="{{ pageDescription | default('Focus Reactive - Modern Web Solutions') }}">
@@ -49,8 +52,6 @@ body{font-family:Inter,sans-serif;margin:0;padding:0;background:#000;color:#fff;
         {% include 'hero.njk' %}
 
         {% include 'integrate.njk' %}
-
-        {% include 'ship.njk' %}
 
         {% include 'work.njk' %}
 

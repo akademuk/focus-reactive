@@ -123,3 +123,140 @@
         }
     }
 }
+
+.ship {
+    padding: 0 24px 64px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+
+    .sticky {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    @include respond-to($breakpoint-xl) {
+        gap: 35px;
+        padding: 22px 0 292px 0;
+        max-width: 1065px;
+        margin: 0 auto;
+    }
+
+    .section-title {
+        color: $FR-Digital-Green;
+    }
+
+    &__animation {
+        width: 100%;
+        max-width: 600px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        align-self: stretch;
+        flex-wrap: nowrap;
+        gap: 8px;
+        margin: 0 auto;
+        padding: 0;
+        list-style: none;
+
+        @include respond-to($breakpoint-xl) {
+            max-width: 848px;
+            gap: 64px;
+        }
+
+        &-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            
+
+            &::before {
+                content: "";
+                width: 1px;
+                background: $FR-Grey-800;
+                display: block;
+            }
+
+            &--1 {
+                &::before {
+                    height: 64px;
+
+                    @include respond-to($breakpoint-xl) {
+                        height: 90px;
+                    }
+                }
+            }
+
+            &--2 {
+                &::before {
+                    height: 84px;
+
+                    @include respond-to($breakpoint-xl) {
+                        height: 154px;
+                    }
+                }
+            }
+
+            &--3 {
+                &::before {
+                    height: 104px;
+
+                    @include respond-to($breakpoint-xl) {
+                        height: 218px;
+                    }
+                }
+            }
+        }
+
+        &-image {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            min-height: 100px;
+            max-width: 100px;
+            width: 100%;
+            padding: 18px 12px 12px 12px;
+            aspect-ratio: 1/1;
+            border-radius: 10px;
+            border: 1px solid $FR-Grey-800;
+            background: $FR-Black;
+
+            @include respond-to($breakpoint-xl) {
+                min-width: 240px;
+                min-height: 240px;
+                gap: 26px;
+                border-radius: 24px;
+                padding: 36px 41px 40px 42px;
+            }
+
+            img {
+                max-width: 40px;
+                width: 100%;
+                height: 40px;
+                object-fit: contain;
+
+                @include respond-to($breakpoint-xl) {
+                    min-width: 105px;
+                    height: 110px;
+                    object-fit: contain;
+                }
+            }
+
+            h3 {
+                text-align: center;
+                font-size: 12px;
+                font-weight: 500;
+                line-height: 110%; 
+                margin: 0;
+
+                @include respond-to($breakpoint-xl) {
+                    font-size: 28px;
+                }
+            }
+        }
+    }
+}

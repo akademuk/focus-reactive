@@ -1,52 +1,134 @@
 # Focus Reactive - Modern Web Solutions
 
-A modern, responsive website showcasing composable content systems and web development services.
+A modern, responsive website showcasing composable content systems and web development services. Built with performance, accessibility, and maintainability in mind.
 
-## 🚀 Features
+## 🚀 Live Demo
 
-- **Responsive Design**: Mobile-first approach with adaptive layouts
-- **Modern Stack**: Built with Nunjucks templating, Sass, and Gulp automation
-- **Performance Optimized**: WebP image format support, CSS/JS minification
-- **Accessibility**: Semantic HTML, ARIA labels, keyboard navigation
-- **SEO Ready**: Meta tags, Open Graph, structured markup
+🌐 **[View Live Website](https://akademuk.github.io/focus-reactive/)**
+
+## ✨ Features
+
+- **🎨 Modern Design**: Clean, professional layout with smooth animations
+- **📱 Fully Responsive**: Mobile-first approach with adaptive layouts
+- **⚡ Performance Optimized**: WebP images, CSS/JS minification, critical CSS
+- **♿ Accessibility Ready**: Semantic HTML, ARIA labels, keyboard navigation
+- **🔧 Component-Based**: Modular Nunjucks components for easy maintenance
+- **🎬 Smooth Animations**: GSAP-powered scroll animations and interactions
 
 ## 🛠️ Technologies
 
 - **Template Engine**: Nunjucks
-- **Styling**: Sass (SCSS)
-- **Build Tool**: Gulp 5
-- **Dev Server**: BrowserSync
-- **Image Processing**: WebP conversion, optimization
-- **CSS**: Autoprefixer, minification
-- **JavaScript**: ES6+, minification
+- **Styling**: Sass (SCSS) with BEM methodology
+- **Build Tool**: Gulp 5 with automated optimization
+- **Animations**: GSAP (GreenSock)
+- **Dev Server**: BrowserSync with live reload
+- **Image Processing**: WebP conversion and optimization
 
 ## 📁 Project Structure
 
 ```
 my-project/
-├── components/          # Nunjucks components
-│   ├── header.njk
-│   ├── hero.njk
-│   ├── integrate.njk
-│   ├── ship.njk
-│   ├── work.njk
-│   └── footer.njk
-├── pages/              # Page templates
-│   └── index.njk
-├── styles/             # Sass stylesheets
+├── components/          # Reusable Nunjucks components
+│   ├── header.njk      # Site header with navigation
+│   ├── hero.njk        # Hero section with main CTA
+│   ├── integrate.njk   # Integration showcase
+│   ├── work.njk        # Featured work portfolio
+│   └── footer.njk      # Site footer
+├── pages/              # Page templates  
+│   └── index.njk       # Homepage template
+├── styles/             # SASS stylesheets
 │   ├── main.scss       # Main entry point
-│   ├── _global.scss    # Global styles & variables
-│   └── _*.scss         # Component styles
-├── scripts/            # JavaScript files
-│   └── main.js
-├── images/             # Source images
-├── fonts/              # Web fonts
+│   └── _*.scss         # Component-specific styles
+├── scripts/            # JavaScript functionality
+├── images/             # Optimized images
 └── dist/               # Built files (auto-generated)
 ```
 
 ## 🔧 Getting Started
 
 ### Prerequisites
+- Node.js 16+
+- npm or yarn
+
+### Installation & Development
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+# Opens http://localhost:3000 with live reload
+
+# Build for production
+npm run build
+
+# Serve production build
+npm run serve
+```
+
+## 🎯 Component Architecture
+
+### Reusable Components
+Each section is an independent Nunjucks component that can be easily reordered:
+
+```nunjucks
+<!-- Easy to reorder in pages/index.njk -->
+{% include 'hero.njk' %}
+{% include 'integrate.njk' %}
+{% include 'work.njk' %}
+```
+
+### Styling with BEM
+Consistent naming convention across all components:
+```scss
+.hero { }                    // Block
+.hero__title { }            // Element  
+.hero__title--highlighted { } // Modifier
+```
+
+## 🎬 Animation Features
+
+- **Scroll Animations**: Elements fade in as they enter viewport
+- **Interactive Hover Effects**: Smooth transitions on user interaction
+- **Mobile Menu**: Smooth slide-in navigation with overlay
+- **Performance Optimized**: Hardware-accelerated CSS transforms
+
+## 📱 Browser Support
+
+- ✅ Chrome 90+
+- ✅ Safari 14+
+- ✅ Firefox 88+
+- ✅ Edge 90+
+
+## 🤖 AI Development Process
+
+This project leveraged AI tools for accelerated development:
+- **GitHub Copilot**: Component structure and JavaScript logic
+- **ChatGPT**: Architecture decisions and optimization strategies
+- **Time Saved**: ~40% faster development while maintaining code quality
+
+📖 **[Read detailed AI usage documentation](./AI-USAGE.md)**
+
+## 📚 Documentation
+
+- 📋 **[Project Summary & Deliverables](./PROJECT-SUMMARY.md)**
+- 🏗️ **[Architecture & Component Structure](./ARCHITECTURE.md)**
+- 🤖 **[AI Tools Usage](./AI-USAGE.md)**
+- ✅ **[Requirements Checklist](./CHECKLIST.md)**
+- 🤝 **[Contributing Guidelines](./CONTRIBUTING.md)**
+
+## � Deployment
+
+This project is automatically deployed using GitHub Pages with GitHub Actions. Any push to the `main` branch triggers a new deployment.
+
+## 📄 License
+
+MIT License - see [LICENSE](./LICENSE) file for details.
+
+---
+
+Built with ❤️ using modern web technologies and AI assistance.
 
 - Node.js (v14 or higher)
 - npm or yarn

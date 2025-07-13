@@ -5,27 +5,35 @@ $FR-White: #FFF;
 $FR-Digital-Green: #00E56D;
 $FR-Black: #000;
 $FR-Grey: #3B3B3B;
+$FR-Grey-700: #727272;
 $FR-Grey-800: #2C2C2C;
+$FR-Grey-900: #171717;
 
 $font-inter: "Inter", sans-serif;
-
 $breakpoint-xl: 1280px;
+$breakpoint-sm: 576px;
 
 // Mixin
 @mixin respond-to($breakpoint) {
-    @media (min-width: #{$breakpoint}) {
-        @content;
-    }
+  @media (min-width: #{$breakpoint}) {
+    @content;
+  }
+}
+
+@mixin respond-to-sm {
+  @media (max-width: #{$breakpoint-sm}) {
+    @content;
+  }
 }
 
 @mixin wrapper {
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
 
-    @include respond-to($breakpoint-xl) {
-        max-width: 1360px;
-    }
+  @include respond-to($breakpoint-xl) {
+    max-width: 1360px;
+  }
 }
 
 body {
@@ -45,6 +53,14 @@ body {
     &.modal-open {
         overflow: hidden;
     }
+}
+
+.visually-hidden {
+  display: none;
+}
+
+figure {
+    margin: 0;
 }
 
 * {

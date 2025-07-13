@@ -179,7 +179,6 @@ function serve() {
  * @returns {Promise} Deletion promise
  */
 async function clean() {
-  console.log('🧹 Cleaning dist folder...');
   return del(['dist/*']);
 }
 

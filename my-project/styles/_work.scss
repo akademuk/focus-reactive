@@ -1,18 +1,238 @@
-.work {
-    background-color: #000;
-    color: #fff;
-    text-align: center;
-    padding: 60px 0;
+@use 'global' as *;
 
-    .work-item {
-        margin: 20px;
-        background-color: #333;
-        padding: 30px;
-        border-radius: 8px;
-        transition: transform 0.3s ease;
+.work {
+    padding: 51px 0;
+
+    @include respond-to($breakpoint-xl) {
+        padding: 80px 40px;
     }
 
-    .work-item:hover {
-        transform: scale(1.05);
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+
+        @include respond-to($breakpoint-xl) {
+            gap: 53px;
+        }
+    }
+
+    &__items {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+
+        @include respond-to($breakpoint-xl) {
+            gap: 0;
+        }
+    }
+
+    &__title {
+        padding: 0px 24px 13px;
+        letter-spacing: -2px;
+        text-align: left;
+
+        @include respond-to($breakpoint-xl) {
+            font-size: 96px;
+            letter-spacing: -3.92px;
+            padding: 0;
+
+            br {
+                display: none;
+            }
+        }
+    }
+
+    &__item {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "title"
+            "image"
+            "content";
+        display: grid;
+        padding: 18px 23px 19px;
+        gap: 16px;
+        border-top: 1px solid $FR-Grey-800;
+        max-width: calc(50% - 8px);
+        min-width: 250px;
+        width: 100%;
+
+        @include respond-to($breakpoint-xl)  {
+            grid-template-columns: auto 1fr;
+            grid-template-areas:
+            "title image"
+            "content image";
+            max-width: 100%;
+            padding: 20px 0;
+            gap: 0 24px;
+            max-height: 95px;
+            overflow: hidden;
+            transition: max-height 0.4s linear;
+            cursor: pointer;
+
+            &:hover, &.active {
+                max-height: 500px;
+
+                .work__item-image {
+                    max-height: 100%;
+                    height: fit-content;
+                    border-radius: 24px;
+                    transition: max-height 0.4s ease-in ;
+                }
+
+                h3 {
+                    color: $FR-White;
+                }
+            }
+        }
+
+        @include respond-to-sm {
+            max-width: 100%;
+        }
+
+        &-title {
+            grid-area: title;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            align-self: stretch;
+
+            h3 {
+                font-size: 24px;
+                font-weight: 500;
+                text-transform: capitalize;
+                letter-spacing: -1px;
+                line-height: 1.2;
+                margin: 0;
+                transition: all 0.4s;
+
+
+                @include respond-to($breakpoint-xl) {
+                    font-size: 48px;
+                    white-space: nowrap;
+                    padding-bottom: 30px;
+                    color: $FR-Grey-800;
+                }
+            }
+
+            @include respond-to($breakpoint-xl) {
+                width: 436px;
+                position: relative;
+            }
+        }
+
+        &-badge {
+            padding: 4px 14px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.16);
+            backdrop-filter: blur(12px);
+            font-size: 10px;
+            font-weight: 500;
+            
+            @include respond-to($breakpoint-xl) {
+                padding: 8px 12px;
+                background: rgba(0, 0, 0, 0.40);
+                font-size: 16px;
+                position: absolute;
+                top: 10px;
+                right: -171px;
+                min-width: 140px;
+                text-align: center;
+            }
+        }
+
+        &-image {
+            grid-area: image; 
+            height: 185px;
+            width: 100%;
+            border-radius: 12px;
+            border: 1px solid $FR-Grey-900;
+            overflow: hidden;
+
+            @include respond-to($breakpoint-xl) {
+                max-height: 56px;
+                height: 100%;
+                border-radius: 56px;
+                transition:
+                    border-radius 0.4s ease-in-out 0.3s,
+                    max-height 0.4s ease-in-out;
+            }
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+            }
+        }
+
+        &-content {
+            grid-area: content;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 20px;
+            align-self: stretch;
+
+            @include respond-to($breakpoint-xl) {
+                width: 436px;
+                gap: 40px;
+                flex-direction: column;
+                margin-top: auto;
+            }
+        }
+
+        &-list {
+            max-width: 96px;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            list-style: none;
+
+            @include respond-to($breakpoint-xl) {
+                max-width: 100%;
+            }
+
+            li {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+                font-size: 10px;
+                line-height: 120%;
+                letter-spacing: -0.6px;
+                
+                @include respond-to($breakpoint-xl) {
+                    font-size: 24px;
+                    width: 100%;
+                }
+            }
+        }
+
+        &-span {
+            color: $FR-Grey-700;
+            font-size: 8px;
+            font-weight: 500;
+            line-height: 120%;
+            letter-spacing: -0.3px;
+            
+            @include respond-to($breakpoint-xl) {
+                font-size: 14px;
+            }
+        }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -33,21 +33,13 @@
     </div>
     
 
-    <figure class="hero__image">
+    <div class="hero__image">
         <picture>
-            <source srcset="./images/hero-banner.webp" type="image/webp">
-            <img 
-                src="./images/hero-banner.png" 
-                alt="Showcase of our composable content systems in action" 
-                width="2880" 
-                height="1618" 
-                loading="eager" 
-                decoding="async" 
-                fetchpriority="high"
-            />
+            <source srcset="./images/hero-banner-mobile.webp" type="image/webp" media="(max-width: 767px)">
+            <source srcset="./images/hero-banner-mobile.jpg" type="image/jpeg" media="(max-width: 767px)">
+            <source srcset="./images/hero-banner.webp" type="image/webp" media="(min-width: 768px)">
+            <img src="./images/hero-banner.jpg" alt="Showcase of our composable content systems in action" width="2880" height="1618"
+                            loading="eager">
         </picture>
-        <figcaption class="visually-hidden">
-            Example of a fast and scalable composable content system built by our team.
-        </figcaption>
-    </figure>
+    </div>
 </section>
