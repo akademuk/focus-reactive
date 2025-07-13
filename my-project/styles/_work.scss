@@ -67,7 +67,6 @@
             max-height: 95px;
             overflow: hidden;
             transition: max-height 0.4s linear;
-            cursor: pointer;
 
             &:hover, &.active {
                 max-height: 500px;
@@ -76,7 +75,7 @@
                     max-height: 100%;
                     height: fit-content;
                     border-radius: 24px;
-                    transition: max-height 0.4s ease-in ;
+                    transition: max-height 0.4s ease-in;
                 }
 
                 h3 {
@@ -147,6 +146,8 @@
             border-radius: 12px;
             border: 1px solid $FR-Grey-900;
             overflow: hidden;
+            position: relative;
+            cursor: pointer;
 
             @include respond-to($breakpoint-xl) {
                 max-height: 56px;
@@ -154,7 +155,14 @@
                 border-radius: 56px;
                 transition:
                     border-radius 0.4s ease-in-out 0.3s,
-                    max-height 0.4s ease-in-out;
+                    max-height 0.4s ease-in-out,
+                    transform 0.3s ease;
+            }
+
+            &:hover {
+                @include respond-to($breakpoint-xl) {
+                    // Убираем transform эффект
+                }
             }
 
             img {
@@ -162,6 +170,7 @@
                 height: 100%;
                 object-fit: cover;
                 object-position: center;
+                transition: filter 0.3s ease;
             }
         }
 

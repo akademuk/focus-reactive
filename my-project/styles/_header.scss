@@ -4,7 +4,7 @@
 .header {
     width: 100%;
     position: absolute;
-    z-index: 1000;
+    z-index: 1002;
     top: 0;
     left: 0;
     padding: 20px 24px;
@@ -100,58 +100,246 @@
         width: 48px;
         height: 48px;
         background: transparent;
-        border: none;
         padding: 0;
+        border: none;
         cursor: pointer;
         position: relative;
-        z-index: 10;
+        z-index: 1001;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+        &:hover {
+            background: rgba($FR-Black, 0.9);
+            border-color: rgba($FR-Digital-Green, 0.5);
+            transform: scale(1.05);
+        }
 
         @include respond-to($breakpoint-xl) {
-        display: none;
+            display: none;
         }
 
         &-lines {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        height: 2px;
-        position: relative;
-        transition: all 0.4s ease-in-out;
-
-        &::before,
-        &::after {
-            content: "";
-            width: 100%;
+            display: flex;
+            flex-direction: column;
+            width: 48px;
             height: 2px;
-            background: $FR-White;
-            position: absolute;
-            left: 0;
-            transition: all 0.4s ease-in-out;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin: 21px auto;
+            background: transparent;
+
+            // Вторая линия снизу
+            &::after {
+                content: "";
+                width: 100%;
+                height: 2px;
+                background: $FR-White;
+                position: absolute;
+                left: 0;
+                bottom: -4px;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            &::before {
+                content: "";
+                width: 100%;
+                height: 2px;
+                background: $FR-White;
+                position: absolute;
+                left: 0;
+                top: -4px;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
         }
 
-        &::before {
-            top: -4px;
-        }
-
-        &::after {
-            bottom: -4px;
-        }
+        &.active {
+            background: rgba($FR-Black, 0.95);
+            border-color: $FR-Digital-Green;
         }
 
         &.active &-lines {
-        background-color: transparent;
 
-        &::before {
-            transform: rotate(45deg);
-            top: 0;
-        }
+            &::after {
+                transform: rotate(-45deg);
+                bottom: 0;
+                background: $FR-Digital-Green;
+            }
 
-        &::after {
-            transform: rotate(-45deg);
-            bottom: 0;
-        }
+            &::before {
+                transform: rotate(45deg);
+                top: 0;
+                background: $FR-Digital-Green;
+            }
         }
     }
+}
+
+// Mobile Menu Overlay
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.active {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+// Mobile Navigation Menu
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 320px;
+    max-width: 80vw;
+    height: 100%;
+    background: $FR-Black;
+    border-left: 1px solid $FR-Grey-800;
+    z-index: 1000;
+    padding: 80px 32px 32px;
+    overflow-y: auto;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+
+    &.active {
+        right: 0;
+    }
+
+    &__nav {
+        margin-bottom: 40px;
+    }
+
+    &__list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    &__item {
+        margin-bottom: 8px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &-link {
+        display: block;
+        padding: 16px 20px;
+        color: $FR-White;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 1.2;
+        border-radius: 8px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+
+        &:hover,
+        &:focus {
+            background: $FR-Grey-900;
+            color: $FR-Digital-Green;
+            transform: translateX(8px);
+        }
+
+        &[aria-current="page"] {
+            background: $FR-Grey-900;
+            color: $FR-Digital-Green;
+            font-weight: 500;
+
+            &::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 3px;
+                height: 24px;
+                background: $FR-Digital-Green;
+                border-radius: 2px;
+            }
+        }
+    }
+
+    &__contact {
+        margin-top: auto;
+        padding-top: 32px;
+        border-top: 1px solid $FR-Grey-800;
+    }
+
+    &--contact {
+        display: block;
+        width: 100%;
+        padding: 16px 24px;
+        background: $FR-Digital-Green;
+        color: $FR-Black;
+        text-decoration: none;
+        text-align: center;
+        font-size: 16px;
+        font-weight: 500;
+        border-radius: 8px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+        &:hover,
+        &:focus {
+            background: #00F078;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba($FR-Digital-Green, 0.3);
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+    }
+
+    // Animation for menu items
+    &.active &-link {
+        animation: slideInFromRight 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    &.active &__item:nth-child(1) &-link { animation-delay: 0.1s; }
+    &.active &__item:nth-child(2) &-link { animation-delay: 0.15s; }
+    &.active &__item:nth-child(3) &-link { animation-delay: 0.2s; }
+    &.active &__item:nth-child(4) &-link { animation-delay: 0.25s; }
+    &.active &__item:nth-child(5) &-link { animation-delay: 0.3s; }
+
+    &.active &--contact {
+        animation: slideInFromRight 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
+    }
+}
+
+// Keyframes for menu animations
+@keyframes slideInFromRight {
+    0% {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+// Mobile menu responsive adjustments
+@include respond-to($breakpoint-xl) {
+    .mobile-menu,
+    .overlay {
+        display: none;
+    }
+}
+
+// Prevent body scroll when menu is open
+body.body-lock {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
 }
 
 
