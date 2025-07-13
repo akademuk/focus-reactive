@@ -7,6 +7,12 @@
     <meta name="description" content="{{ pageDescription | default('Focus Reactive - Modern Web Solutions') }}">
     <meta name="keywords" content="{{ pageKeywords | default('web development, modern web, focus reactive, portfolio, services') }}">
     <meta name="author" content="Focus Reactive">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="./images/favicon.svg">
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A">
+    <link rel="apple-touch-icon" sizes="180x180" href="./images/favicon.svg">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -17,7 +23,8 @@
 body{font-family:Inter,Arial,sans-serif;margin:0;padding:0;background:#000;color:#fff;line-height:1.4}
 .header{position:absolute;top:0;left:0;width:100%;z-index:1002;padding:20px 24px}
 .header__container{display:flex;align-items:center;justify-content:space-between}
-.header__burger{width:48px;height:48px;background:rgba(0,0,0,0.8);border:1px solid rgba(255,255,255,0.2);border-radius:8px;cursor:pointer;position:relative;z-index:1001}
+.header__burger{width:48px;height:48px;background:rgba(0,0,0,0.8);border:1px solid rgba(255,255,255,0.2);border-radius:8px;cursor:pointer;position:relative;z-index:1001;opacity:0;visibility:hidden;transition:all 0.3s ease}
+body.loaded .header__burger{opacity:1;visibility:visible}
 .hero{position:relative;min-height:640px;padding:100px 24px 24px;overflow:hidden;display:flex;align-items:flex-end}
 .hero__title{font-size:40px;font-weight:600;line-height:.94;margin:0;position:relative;z-index:1}
 .wrapper{width:100%;max-width:100%;margin:0 auto}
@@ -38,10 +45,7 @@ body{font-family:Inter,Arial,sans-serif;margin:0;padding:0;background:#000;color
     <meta name="twitter:title" content="{{ pageTitle | default('Focus Reactive') }}">
     <meta name="twitter:description" content="{{ pageDescription | default('Focus Reactive - Modern Web Solutions') }}">
     <meta name="twitter:image" content="{{ ogImage | default('./images/og-image.jpg') }}">
-    <!-- Favicon -->
-    <link rel="icon" href="./favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="./apple-touch-icon.png">
-    <link rel="preload" href="./images/hero-banner.webp" as="image" type="image/webp">
+    <!-- Preload critical images -->
     <link rel="preload" href="./images/Logo.svg" as="image" type="image/svg+xml">
 </head>
 <body>

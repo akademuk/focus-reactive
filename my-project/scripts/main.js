@@ -1,7 +1,7 @@
 // Register Service Worker for caching
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./js/sw.js')
+    navigator.serviceWorker.register('./sw.js')
       .then(registration => {
         console.log('SW registered: ', registration);
       })
@@ -10,6 +10,11 @@ if ('serviceWorker' in navigator) {
       });
   });
 }
+
+// Предотвращаем мигание элементов при загрузке
+window.addEventListener('load', () => {
+  document.body.classList.add('loaded');
+});
 
 document.addEventListener("DOMContentLoaded", () => {
   initBurgerMenu();
