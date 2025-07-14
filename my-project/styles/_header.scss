@@ -215,6 +215,14 @@
     overflow-y: auto;
     transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    visibility: hidden;
+
+    // Показываем меню только после загрузки
+    body.loaded & {
+        opacity: 1;
+        visibility: visible;
+    }
 
     &.active {
         right: 0;
