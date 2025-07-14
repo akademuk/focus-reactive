@@ -38,6 +38,9 @@ function initBurgerMenu() {
     return;
   }
 
+  // Удаляем инлайн стили, добавленные для предотвращения FOUC
+  menu.removeAttribute('style');
+
   const animationDuration = 400;
 
   /**
