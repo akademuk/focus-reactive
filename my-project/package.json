@@ -1,0 +1,25 @@
+{
+  "name": "focus-reactive-build",
+  "version": "1.0.0",
+  "description": "Build system for Focus Reactive website",
+  "scripts": {
+    "build": "gulp build",
+    "dev": "gulp dev"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-sass": "^5.1.0",
+    "sass": "^1.62.1",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-uglify": "^3.0.2",
+    "gulp-imagemin": "^8.0.0",
+    "gulp-webp": "^4.0.1",
+    "gulp-nunjucks": "^5.1.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-clean": "^0.4.0",
+    "browser-sync": "^2.29.3",
+    "gulp-plumber": "^1.2.1",
+    "gulp-if": "^3.0.0"
+  }
+}
