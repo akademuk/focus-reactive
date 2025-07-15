@@ -50,6 +50,18 @@ body {
     &.modal-open {
         overflow: hidden;
     }
+
+    // Prevent flash of mobile menu on page load
+    &:not(.loaded) {
+        .mobile-menu {
+            opacity: 0 !important;
+            visibility: hidden !important;
+        }
+        .overlay {
+            opacity: 0 !important;
+            visibility: hidden !important;
+        }
+    }
 }
 
 .visually-hidden {
