@@ -90,7 +90,10 @@ function styles() {
     .pipe(postcss([autoprefixer()]))
     .pipe(cleanCSS())
     .pipe(gulp.dest(paths.styles.dest))
-    .pipe(browserSync.stream());
+    .pipe(browserSync.stream({ 
+      match: '**/*.css',
+      once: true
+    }));
 }
 
 // Задача для рендеринга Nunjucks → HTML с минификацией
@@ -146,8 +149,8 @@ function serve() {
           } else if (req.url.endsWith('.svg')) {
             res.setHeader('Content-Type', 'image/svg+xml');
           }
-          // Отключаем кеширование для изображений в dev режиме
-          if (req.url.startsWith('/images/')) {
+          // Отключаем кеширование для изображений и CSS в dev режиме
+          if (req.url.startsWith('/images/') || req.url.startsWith('/css/')) {
             res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
             res.setHeader('Pragma', 'no-cache');
             res.setHeader('Expires', '0');
@@ -163,7 +166,12 @@ function serve() {
     reloadDelay: 0
   });
 
-  gulp.watch(paths.styles.watch, styles);
+  gulp.watch(paths.styles.watch, gulp.series(styles, function(done) {
+    setTimeout(function() {
+      browserSync.reload();
+    }, 100);
+    done();
+  }));
   gulp.watch(paths.templates.watch, templates).on('change', browserSync.reload);
   gulp.watch(paths.scripts.src, scripts).on('change', browserSync.reload);
   gulp.watch(paths.images.src, images).on('change', browserSync.reload);

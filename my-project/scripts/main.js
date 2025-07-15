@@ -20,6 +20,16 @@ document.addEventListener("DOMContentLoaded", () => {
   initBurgerMenu();
   initFallingElementsAnimation();
   initWorkItemsLogic();
+  
+  // Запускаем анимацию integrate после загрузки GSAP
+  if (typeof gsap !== 'undefined') {
+    initIntegrateAnimation();
+  } else {
+    // Если GSAP еще не загружен, ждем
+    window.addEventListener('load', () => {
+      setTimeout(initIntegrateAnimation, 100);
+    });
+  }
 });
 
 /**
@@ -37,9 +47,6 @@ function initBurgerMenu() {
     console.warn("Mobile menu elements not found");
     return;
   }
-
-  // Удаляем инлайн стили, добавленные для предотвращения FOUC
-  menu.removeAttribute('style');
 
   const animationDuration = 400;
 
@@ -241,4 +248,149 @@ function initWorkItemsLogic() {
     }
   });
 }
+
+/**
+ * Initialize Integrate Section Animation
+ * Beautiful scroll-triggered animation with smooth transitions
+ */
+function initIntegrateAnimation() {
+  // Check if GSAP and ScrollTrigger are available
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+    console.warn('GSAP or ScrollTrigger not available for integrate animation');
+    return;
+  }
+
+  console.log('Initializing integrate animation...');
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const introSection = document.querySelector('.intro');
+  
+  if (!introSection) {
+    console.warn('Intro section not found');
+    return;
+  }
+
+  // Мягкие начальные состояния - элементы почти на своих местах
+  gsap.set(".icons-group-1", { y: "-20vh", opacity: 0.3, scale: 0.95 }); // Иконки слегка выше
+  gsap.set(".icons-group-2", { y: "20vh", opacity: 0, scale: 0.95 }); // Иконки слегка ниже
+  gsap.set(".title-1", { y: "50vh", scale: 1.05, opacity: 0 }); // Заголовок немного снизу
+  gsap.set(".title-2", { y: "50vh", scale: 1.05, opacity: 0 }); // Второй заголовок тоже
+
+  // Очень плавная анимация с большим скроллом
+  const masterTL = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".intro",
+      start: "top top",
+      end: "+=600vh", // Длинный скролл для медленной анимации
+      scrub: 2, // Очень плавная синхронизация
+      pin: true,
+      pinSpacing: true,
+      anticipatePin: 1,
+      invalidateOnRefresh: true
+    }
+  });
+
+  // Непрерывная плавная анимация без резких переходов
+  masterTL
+    // Первый заголовок медленно поднимается и проявляется (0-25%)
+    .to(".title-1", {
+      y: 0,
+      scale: 1,
+      opacity: 1,
+      duration: 40,
+      ease: "sine.out"
+    }, 0)
+    
+    // Первые иконки медленно спускаются (5-30%)
+    .to(".icons-group-1", {
+      y: "-10vh",
+      opacity: 1,
+      scale: 1,
+      duration: 40,
+      ease: "sine.out"
+    }, 8)
+    
+    // Долгая пауза с элементами на месте (30-60%)
+    .to(".title-1", {
+      scale: 1,
+      duration: 60,
+      ease: "none"
+    }, 50)
+    
+    // Очень медленное исчезновение первого заголовка (60-80%)
+    .to(".title-1", {
+      y: "-30vh",
+      opacity: 0,
+      scale: 0.9,
+      duration: 40,
+      ease: "sine.in"
+    }, 120)
+    
+    // Первые иконки медленно уходят вверх (65-85%)
+    .to(".icons-group-1", {
+      y: "-40vh",
+      opacity: 0,
+      scale: 0.8,
+      duration: 40,
+      ease: "sine.in"
+    }, 130)
+    
+    // Второй заголовок медленно появляется (75-95%)
+    .to(".title-2", {
+      y: 0,
+      scale: 1,
+      opacity: 1,
+      duration: 40,
+      ease: "sine.out"
+    }, 150)
+    
+    // Вторые иконки медленно поднимаются (80-100%)
+    .to(".icons-group-2", {
+      y: "10vh",
+      opacity: 1,
+      scale: 1,
+      duration: 40,
+      ease: "sine.out"
+    }, 160);
+
+  // Очень медленный фоновый параллакс
+  masterTL
+    .to(".bg-parallax", {
+      y: -100,
+      scale: 1.05,
+      duration: 200, // На всю длину
+      ease: "none"
+    }, 0);
+
+  // Очень деликатный mouse parallax
+  document.addEventListener('mousemove', (e) => {
+    const mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+    const mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+    
+    gsap.to(".bg-parallax", {
+      x: mouseX * 8, // Уменьшенное движение
+      y: mouseY * 5,
+      duration: 3, // Медленнее
+      ease: "sine.out"
+    });
+    
+    // Минимальный параллакс для иконок
+    gsap.to(".icons-group-1, .icons-group-2", {
+      x: mouseX * 2,
+      duration: 2,
+      ease: "sine.out"
+    });
+  });
+
+  // Refresh ScrollTrigger on window resize
+  window.addEventListener('resize', () => {
+    ScrollTrigger.refresh();
+  });
+
+  console.log('Integrate animation initialized successfully');
+}
+
+// Make function globally available
+window.initIntegrateAnimation = initIntegrateAnimation;
 

@@ -28,10 +28,10 @@ body.loaded .header__burger{opacity:1;visibility:visible}
 .hero{position:relative;min-height:640px;padding:100px 24px 24px;overflow:hidden;display:flex;align-items:flex-end}
 .hero__title{font-size:40px;font-weight:600;line-height:.94;margin:0;position:relative;z-index:1}
 .wrapper{width:100%;max-width:100%;margin:0 auto}
-.mobile-menu{position:fixed;top:0;right:-100%;width:320px;max-width:80vw;height:100%;background:#000;z-index:1000;transition:right 0.4s ease;opacity:0;visibility:hidden}
-body.loaded .mobile-menu{opacity:1;visibility:visible}
+.mobile-menu{position:fixed;top:0;right:-100%;width:320px;max-width:80vw;height:100%;background:#000;z-index:1000;transition:right 0.4s ease;opacity:0!important;visibility:hidden!important;display:none!important;transform:translateX(-100vh)!important}
+body.loaded .mobile-menu{opacity:1!important;visibility:visible!important;display:block!important;transform:translateX(0)!important}
 .overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:999;opacity:0;visibility:hidden;transition:all 0.3s ease}
-@media (min-width:1280px){.header{padding:36px 40px}.hero{min-height:809px;padding:120px 40px 49px}.hero__title{font-size:88px}.wrapper{max-width:1360px}.mobile-menu,.overlay,.header__burger{display:none}}
+@media (min-width:1280px){.header{padding:36px 40px}.hero{min-height:809px;padding:120px 40px 49px}.hero__title{font-size:88px}.wrapper{max-width:1360px}.mobile-menu,.overlay,.header__burger{display:none!important}}
     </style>
     <link rel="preload" href="./css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="./css/main.css"></noscript>
@@ -65,39 +65,6 @@ body.loaded .mobile-menu{opacity:1;visibility:visible}
 
     {% include 'footer.njk' %}
 
-    <!-- Mobile Navigation Overlay -->
-    <div class="overlay" tabindex="-1" aria-hidden="true"></div>
-
-    <!-- Mobile Navigation Menu -->
-    <aside class="mobile-menu" 
-           id="mobile-menu"
-           aria-label="Mobile Navigation" 
-           hidden
-           style="opacity: 0 !important; visibility: hidden !important; pointer-events: none;">
-        <nav class="mobile-menu__nav" aria-label="Mobile Primary Navigation">
-            <ul class="mobile-menu__list" role="list">
-                <li class="mobile-menu__item" role="listitem">
-                    <a href="/" class="mobile-menu-link" tabindex="0">Home</a>
-                </li>
-                <li class="mobile-menu__item" role="listitem">
-                    <a href="/services" class="mobile-menu-link" tabindex="0">Services</a>
-                </li>
-                <li class="mobile-menu__item" role="listitem">
-                    <a href="/portfolio" class="mobile-menu-link" tabindex="0">Portfolio</a>
-                </li>
-                <li class="mobile-menu__item" role="listitem">
-                    <a href="/about" class="mobile-menu-link" tabindex="0">About</a>
-                </li>
-                <li class="mobile-menu__item" role="listitem">
-                    <a href="/blog" class="mobile-menu-link" tabindex="0">Blog</a>
-                </li>
-            </ul>
-        </nav>
-        <div class="mobile-menu__contact">
-            <a href="./contact" class="mobile-menu--contact" role="button" tabindex="0">Contact Us</a>
-        </div>
-    </aside>
-
     <!-- Load GSAP after page load for better performance -->
     <script>
     window.addEventListener('load', function() {
@@ -106,6 +73,12 @@ body.loaded .mobile-menu{opacity:1;visibility:visible}
         gsapScript.onload = function() {
             const scrollTriggerScript = document.createElement('script');
             scrollTriggerScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js';
+            scrollTriggerScript.onload = function() {
+                // Инициализируем анимации после загрузки GSAP
+                if (typeof initIntegrateAnimation === 'function') {
+                    initIntegrateAnimation();
+                }
+            };
             document.head.appendChild(scrollTriggerScript);
         };
         document.head.appendChild(gsapScript);
