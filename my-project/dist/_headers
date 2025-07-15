@@ -1,0 +1,29 @@
+# Static assets caching - 1 year
+/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/css/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/js/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Fonts caching
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# WebP images
+*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+# SVG images  
+*.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML caching - shorter period
+/*.html
+  Cache-Control: public, max-age=3600, must-revalidate
+
+# Root files
+/
+  Cache-Control: public, max-age=1800, must-revalidate

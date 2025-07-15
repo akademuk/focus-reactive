@@ -1,0 +1,1 @@
+let CACHE_NAME="focus-reactive-v1",urlsToCache=["/","/css/main.css","/js/main.js","/images/Logo.svg","/images/hero-banner.webp","/images/Rating.svg"];self.addEventListener("install",e=>{e.waitUntil(caches.open(CACHE_NAME).then(e=>e.addAll(urlsToCache)))}),self.addEventListener("fetch",s=>{s.respondWith(caches.match(s.request).then(e=>e||fetch(s.request)))});
