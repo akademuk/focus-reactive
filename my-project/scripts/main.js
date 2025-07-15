@@ -11,9 +11,22 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-// Prevent element flashing on load
+
+// Prevent element flashing on load (инлайново скрываем меню и оверлей)
+const menu = document.querySelector('.mobile-menu');
+const overlay = document.querySelector('.overlay');
+if (menu) menu.style.display = 'none';
+if (overlay) overlay.style.display = 'none';
+
+document.documentElement.classList.add('js-loaded');
+
 window.addEventListener('load', () => {
-  document.body.classList.add('loaded');
+  // Небольшая задержка чтобы всё точно загрузилось
+  setTimeout(() => {
+    document.body.classList.add('loaded');
+    if (menu) menu.style.display = '';
+    if (overlay) overlay.style.display = '';
+  }, 50);
 });
 
 document.addEventListener("DOMContentLoaded", () => {

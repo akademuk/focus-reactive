@@ -10,6 +10,11 @@ $font-inter: "Inter", sans-serif;
 $breakpoint-xl: 1280px;
 $breakpoint-sm: 576px;
 
+// Prevent any flash of content before JS loads
+html:not(.js-loaded) {
+  overflow-x: hidden !important;
+}
+
 // Mixin
 @mixin respond-to($breakpoint) {
   @media (min-width: #{$breakpoint}) {
@@ -51,15 +56,13 @@ body {
         overflow: hidden;
     }
 
-    // Prevent flash of mobile menu on page load
+    // Prevent FOUC (Flash of Unstyled Content) on page load
     &:not(.loaded) {
-        .mobile-menu {
-            opacity: 0 !important;
-            visibility: hidden !important;
-        }
-        .overlay {
-            opacity: 0 !important;
-            visibility: hidden !important;
+        overflow-x: hidden !important;
+        .mobile-menu,
+        .overlay,
+        .header__burger {
+            display: none !important;
         }
     }
 }
