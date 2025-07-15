@@ -1,4 +1,4 @@
-// Custom cursor for work item images
+// Work item custom cursor
 .work__item-image {
     cursor: url('../images/cursor.png') 40 20, pointer;
     
@@ -17,7 +17,7 @@
     }
 }
 
-// Parallax Animation Section Styles
+// GSAP Animation Section
 .intro {
     height: 100vh;
     width: 100%;
@@ -34,7 +34,6 @@
     position: relative;
 }
 
-/* Заголовки */
 .title {
     position: absolute;
     font-size: 3.5rem;
@@ -55,7 +54,7 @@
     transform: scale(0.8) translateY(200px);
 }
 
-/* Группы иконок */
+// Icons group styles
 .icons-group {
     position: absolute;
     width: 100%;
@@ -70,12 +69,8 @@
     overflow: hidden;
 }
 
-
-
-
 .pin-spacer {
     width: 100% !important;
     margin: 0 !important;
     justify-content: center;
 }
-
