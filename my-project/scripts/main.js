@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initFallingElementsAnimation();
   initWorkItemsLogic();
   
-  // Initialize integrate animation after GSAP loads
+  // Initialize integrate animation after GSAP loads (desktop only)
   if (typeof gsap !== 'undefined') {
     initIntegrateAnimation();
   } else {
@@ -29,6 +29,15 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(initIntegrateAnimation, 100);
     });
   }
+  
+  // Re-initialize on window resize
+  window.addEventListener('resize', () => {
+    // Debounce resize events
+    clearTimeout(window.resizeTimeout);
+    window.resizeTimeout = setTimeout(() => {
+      initIntegrateAnimation();
+    }, 250);
+  });
 });
 
 /**
@@ -216,10 +225,19 @@ function initWorkItemsLogic() {
 
 /**
  * GSAP ScrollTrigger animation for integrate section
+ * Only runs on desktop devices (1280px and above)
  */
 function initIntegrateAnimation() {
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
     console.warn('GSAP or ScrollTrigger not available');
+    return;
+  }
+
+  // Check if device is desktop
+  const isDesktop = () => window.innerWidth >= 1280;
+  
+  if (!isDesktop()) {
+    console.log('GSAP animation disabled on mobile devices');
     return;
   }
 
@@ -303,7 +321,18 @@ function initIntegrateAnimation() {
   });
 
   window.addEventListener('resize', () => {
-    ScrollTrigger.refresh();
+    const isDesktop = () => window.innerWidth >= 1280;
+    
+    if (isDesktop()) {
+      ScrollTrigger.refresh();
+    } else {
+      // Kill all ScrollTrigger instances on mobile
+      ScrollTrigger.getAll().forEach(trigger => {
+        if (trigger.trigger && trigger.trigger.closest('.intro')) {
+          trigger.kill();
+        }
+      });
+    }
   });
 }
 
