@@ -1,7 +1,7 @@
 @use 'global' as *;
 
 .work {
-    padding: 51px 0;
+    padding: 63px 0;
 
     @include respond-to($breakpoint-xl) {
         padding: 80px 40px;

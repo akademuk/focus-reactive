@@ -25,10 +25,16 @@
         margin: 0 auto;
         padding: 0;
         list-style: none;
+        flex-wrap: wrap;
+
+        .section-title-mobile {
+            margin: 10px 0 52px 0px;
+        }
 
         @include respond-to($breakpoint-xl) {
             max-width: 848px;
             gap: 64px;
+            flex-direction: row;
         }
 
         &-item {
@@ -143,10 +149,6 @@
         margin: 0 auto;
     }
 
-    .section-title {
-        color: $FR-Digital-Green;
-    }
-
     &__animation {
         width: 100%;
         max-width: 600px;
@@ -159,10 +161,17 @@
         margin: 0 auto;
         padding: 0;
         list-style: none;
+        flex-wrap: wrap;
+
+        .section-title {
+            color: $FR-Digital-Green;
+            margin-bottom: 8px;
+        }
 
         @include respond-to($breakpoint-xl) {
             max-width: 848px;
             gap: 64px;
+            flex-direction: row;
         }
 
         &-item {
@@ -258,5 +267,34 @@
                 }
             }
         }
+    }
+}
+
+// Section groups for organized layout
+.section-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+
+    @include respond-to($breakpoint-xl) {
+        gap: 40px;
+    }
+
+    .title {
+        order: 1;
+    }
+
+    .icons-group {
+        order: 2;
+    }
+}
+
+.section-title-mobile {
+    width: 100%;
+    text-align: center;
+     @include respond-to($breakpoint-xl) {
+        display: none;
     }
 }

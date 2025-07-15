@@ -253,15 +253,15 @@ function initIntegrateAnimation() {
   gsap.set(".icons-group-1", { y: "-20vh", opacity: 0.3, scale: 0.95 });
   gsap.set(".icons-group-2", { y: "20vh", opacity: 0, scale: 0.95 });
   gsap.set(".title-1", { y: "50vh", scale: 1.05, opacity: 0 });
-  gsap.set(".title-2", { y: "50vh", scale: 1.05, opacity: 0 });
+  gsap.set(".title-2", { y: "0vh", scale: 1, opacity: 0 });
 
-  // Timeline with smooth scroll
+  // Timeline with smooth scroll - максимально залипающая анимация
   const masterTL = gsap.timeline({
     scrollTrigger: {
       trigger: ".intro",
       start: "top top",
-      end: "+=600vh",
-      scrub: 2,
+      end: "+=3000vh", // Значительно увеличиваем высоту скролла до 3000vh
+      scrub: 0.5, // Делаем scrub еще меньше для максимального "залипания"
       pin: true,
       pinSpacing: true,
       anticipatePin: 1,
@@ -269,40 +269,70 @@ function initIntegrateAnimation() {
     }
   });
 
-  // Animation sequence
+  // Animation sequence - очень медленные переходы с огромными паузами
   masterTL
+    // Phase 1: First title appears and settles - очень медленно
     .to(".title-1", {
       y: 0, scale: 1, opacity: 1,
-      duration: 40, ease: "sine.out"
+      duration: 300, ease: "sine.out" // Еще больше увеличил
     }, 0)
+    // PAUSE: Title stays in stable position ОЧЕНЬ ДОЛГО
+    .to(".title-1", {
+      y: 0, scale: 1, opacity: 1,
+      duration: 600, ease: "none" // Огромная пауза
+    }, 300)
+    // Phase 2: Icons appear below title - очень поздно и медленно
     .to(".icons-group-1", {
       y: "-10vh", opacity: 1, scale: 1,
-      duration: 40, ease: "sine.out"
-    }, 8)
+      duration: 400, ease: "sine.out" 
+    }, 900) // Очень поздно
+    // PAUSE: Both title and icons stay visible together ОЧЕНЬ ДОЛГО
     .to(".title-1", {
-      scale: 1, duration: 60, ease: "none"
-    }, 50)
+      y: 0, scale: 1, opacity: 1,
+      duration: 800, ease: "none" // Огромная пауза
+    }, 1300)
+    .to(".icons-group-1", {
+      y: "-10vh", opacity: 1, scale: 1,
+      duration: 800, ease: "none" // Огромная пауза
+    }, 1300)
+    // Phase 3: First section exits - НАМНОГО ПОЗЖЕ
     .to(".title-1", {
       y: "-30vh", opacity: 0, scale: 0.9,
-      duration: 40, ease: "sine.in"
-    }, 120)
+      duration: 200, ease: "sine.in"
+    }, 2100) // Намного позже
     .to(".icons-group-1", {
       y: "-40vh", opacity: 0, scale: 0.8,
-      duration: 40, ease: "sine.in"
-    }, 130)
+      duration: 200, ease: "sine.in"
+    }, 2100)
+    // Phase 4: Second title appears above center
     .to(".title-2", {
-      y: 0, scale: 1, opacity: 1,
-      duration: 40, ease: "sine.out"
-    }, 150)
+      y: "-15vh", scale: 1, opacity: 1,
+      duration: 400, ease: "sine.out"
+    }, 2300)
+    // PAUSE: Second title stays in position ОЧЕНЬ ДОЛГО
+    .to(".title-2", {
+      y: "-15vh", scale: 1, opacity: 1,
+      duration: 800, ease: "none" // Огромная пауза
+    }, 2700)
+    // Phase 5: Second icons appear well below title
     .to(".icons-group-2", {
-      y: "10vh", opacity: 1, scale: 1,
-      duration: 40, ease: "sine.out"
-    }, 160);
+      y: "25vh", opacity: 1, scale: 1,
+      duration: 500, ease: "sine.out"
+    }, 3500) // Очень поздно
+    // PAUSE: Final position - both elements stay visible ОЧЕНЬ ДОЛГО
+    .to(".title-2", {
+      y: "-15vh", scale: 1, opacity: 1,
+      duration: 1000, ease: "none" // Огромная финальная пауза
+    }, 4000)
+    .to(".icons-group-2", {
+      y: "25vh", opacity: 1, scale: 1,
+      duration: 1000, ease: "none" // Огромная финальная пауза
+    }, 4000);
 
-  // Background parallax
+  // Background parallax - соответствует новой огромной длительности
   masterTL.to(".bg-parallax", {
     y: -100, scale: 1.05,
-    duration: 200, ease: "none"
+    duration: 5000, ease: "none" // Огромная длительность под новую анимацию
   }, 0);
 
   // Mouse parallax
