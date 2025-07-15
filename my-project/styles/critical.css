@@ -5,4 +5,7 @@ body{font-family:Inter,sans-serif;margin:0;padding:0;background:#000;color:#fff;
 .hero{position:relative;min-height:640px;padding:100px 24px 24px;overflow:hidden;display:flex;align-items:flex-end}
 .hero__title{font-size:40px;font-weight:600;line-height:.94;margin:0;position:relative;z-index:1}
 .wrapper{width:100%;max-width:100%;margin:0 auto}
+/* Prevent FOUC for nav: hide by default, show on desktop */
+.header__nav{display:none;}
+@media (min-width:1280px){.header__nav{display:block;}}
 @media (min-width:1280px){.header{padding:36px 40px}.hero{min-height:809px;padding:120px 40px 49px}.hero__title{font-size:88px}.wrapper{max-width:1360px}}

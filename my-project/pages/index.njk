@@ -14,7 +14,7 @@
       html, body { overflow-x: hidden !important; }
     </style>
     <link rel="icon" type="image/svg+xml" href="./images/favicon.svg">
-    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A">
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A">
     <link rel="apple-touch-icon" sizes="180x180" href="./images/favicon.svg">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -68,6 +68,35 @@ body.loaded .mobile-menu{opacity:1!important;visibility:visible!important;displa
     </main>
 
     {% include 'footer.njk' %}
+
+    <!-- Mobile Navigation Menu moved to end of body for FOUC fix -->
+    <aside class="mobile-menu" 
+           id="mobile-menu"
+           aria-label="Mobile Navigation" 
+           hidden>
+        <nav class="mobile-menu__nav" aria-label="Mobile Primary Navigation">
+            <ul class="mobile-menu__list" role="list">
+                <li class="mobile-menu__item" role="listitem">
+                    <a href="/" class="mobile-menu-link" tabindex="0">Home</a>
+                </li>
+                <li class="mobile-menu__item" role="listitem">
+                    <a href="/services" class="mobile-menu-link" tabindex="0">Services</a>
+                </li>
+                <li class="mobile-menu__item" role="listitem">
+                    <a href="/portfolio" class="mobile-menu-link" tabindex="0">Portfolio</a>
+                </li>
+                <li class="mobile-menu__item" role="listitem">
+                    <a href="/about" class="mobile-menu-link" tabindex="0">About</a>
+                </li>
+                <li class="mobile-menu__item" role="listitem">
+                    <a href="/blog" class="mobile-menu-link" tabindex="0">Blog</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="mobile-menu__contact">
+            <a href="./contact" class="mobile-menu--contact" role="button" tabindex="0">Contact Us</a>
+        </div>
+    </aside>
 
     <!-- Load GSAP after page load for better performance -->
     <script>
